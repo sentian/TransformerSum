@@ -403,7 +403,7 @@ class SentencesProcessor:
         sep_token = str(sep_token)
         cls_token = str(cls_token)
         if max_length is None:
-            max_length = tokenizer.max_len
+            max_length = tokenizer.model_max_length
 
         if max_length > 1_000_000:
             logger.warning(
@@ -444,7 +444,7 @@ class SentencesProcessor:
             input_ids = tokenizer.encode(
                 src_txt,
                 add_special_tokens=True,
-                max_length=min(max_length, tokenizer.max_len),
+                max_length=min(max_length, tokenizer.model_max_length),
             )
 
         return input_ids
@@ -796,7 +796,7 @@ class SentencesProcessor:
             pad_ids_and_attention = True
 
         if max_length is None:
-            max_length = tokenizer.max_len
+            max_length = tokenizer.model_max_length
 
         # batch_length = max(len(input_ids) for input_ids in all_input_ids)
 

@@ -1081,8 +1081,8 @@ class ExtractiveSummarizer(pl.LightningModule):
             ]
         else:
             nlp = English()
-            sentencizer = nlp.create_pipe("sentencizer")
-            nlp.add_pipe(sentencizer)
+            # sentencizer = nlp.create_pipe("sentencizer")
+            nlp.add_pipe("sentencizer")
 
             src_txt = [
                 " ".join([token.text for token in nlp(sentence) if str(token) != "."])
@@ -1157,8 +1157,8 @@ class ExtractiveSummarizer(pl.LightningModule):
             of input sentences and their corespoding scores.
         """
         nlp = English()
-        sentencizer = nlp.create_pipe("sentencizer")
-        nlp.add_pipe(sentencizer)
+        # sentencizer = nlp.create_pipe("sentencizer")
+        nlp.add_pipe("sentencizer")
         doc = nlp(input_text)
 
         return self.predict_sentences(
